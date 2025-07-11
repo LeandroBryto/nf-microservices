@@ -1,6 +1,6 @@
 # NF-MICROSERVICE
 
 
-**Projeto em desenvolvimentos**
+**Projeto em desenvolvimento**
 
 Este repositório está em construção 
