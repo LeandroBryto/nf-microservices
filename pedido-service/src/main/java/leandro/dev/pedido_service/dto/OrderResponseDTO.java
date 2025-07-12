@@ -16,7 +16,8 @@ public class OrderResponseDTO {
     private String clienteNome;
     private String clienteEmail;
     private String clienteCpf;
-    private BigDecimal descricao;
+    private BigDecimal valor;
+    private String descricao;
     private String status;
     private LocalDateTime dataCriacao;
 }
