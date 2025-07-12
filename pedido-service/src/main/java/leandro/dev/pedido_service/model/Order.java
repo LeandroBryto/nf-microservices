@@ -1,6 +1,7 @@
 package leandro.dev.pedido_service.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
@@ -9,6 +10,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "pedidos")
+@Data
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
