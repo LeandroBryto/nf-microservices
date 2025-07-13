@@ -4,29 +4,25 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CpfValidator {
-
-    /**
-     * Valida se o CPF é válido.
-     *
-     * @param cpf CPF no formato com ou sem pontuação.
-     * @throws CpfInvalidoException caso o CPF seja inválido por qualquer motivo.
-     */
-    public void validar(String cpf) throws CpfInvalidoException {
+    public boolean isValid(String cpf) {
         if (cpf == null || cpf.isEmpty()) {
-            throw new CpfInvalidoException("CPF não pode ser nulo ou vazio.");
+            return false;
         }
 
         // Remove pontos e traços
         cpf = cpf.replaceAll("[^0-9]", "");
 
+        // Verifica se tem 11 dígitos
         if (cpf.length() != 11) {
-            throw new CpfInvalidoException("CPF deve conter 11 dígitos.");
+            return false;
         }
 
+        // Verifica se todos os dígitos são iguais
         if (cpf.matches("(\\d)\\1{10}")) {
-            throw new CpfInvalidoException("CPF não pode conter todos os dígitos iguais.");
+            return false;
         }
 
+        // Calcula o primeiro dígito verificador
         int soma = 0;
         for (int i = 0; i < 9; i++) {
             soma += Character.getNumericValue(cpf.charAt(i)) * (10 - i);
@@ -36,6 +32,7 @@ public class CpfValidator {
             primeiroDigito = 0;
         }
 
+        // Calcula o segundo dígito verificador
         soma = 0;
         for (int i = 0; i < 10; i++) {
             soma += Character.getNumericValue(cpf.charAt(i)) * (11 - i);
@@ -45,18 +42,8 @@ public class CpfValidator {
             segundoDigito = 0;
         }
 
-        if (Character.getNumericValue(cpf.charAt(9)) != primeiroDigito ||
-                Character.getNumericValue(cpf.charAt(10)) != segundoDigito) {
-            throw new CpfInvalidoException("CPF inválido: dígitos verificadores não conferem.");
-        }
-    }
-
-    /**
-     * Exceção personalizada para CPF inválido.
-     */
-    public static class CpfInvalidoException extends RuntimeException {
-        public CpfInvalidoException(String message) {
-            super(message);
-        }
+        // Verifica se os dígitos calculados conferem com os informados
+        return Character.getNumericValue(cpf.charAt(9)) == primeiroDigito &&
+                Character.getNumericValue(cpf.charAt(10)) == segundoDigito;
     }
 }
