@@ -13,7 +13,8 @@ import java.util.UUID;
 @Data
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
+    @Column(columnDefinition = "BINARY(16)")
     private UUID id;
 
     @Column(name = "cliente_nome", nullable = false)

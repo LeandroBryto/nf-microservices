@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -30,6 +32,7 @@ public class OrderService {
         order.setValor(request.getValor());
         order.setDescricao(request.getDescricao());
         order.setStatus("CRIADO");
+        order.setDataCriacao(LocalDateTime.now());
 
         Order perdidoSalvo = orderRepository.save(order);
         log.info("Pedido criado com ID: {}", perdidoSalvo.getId());

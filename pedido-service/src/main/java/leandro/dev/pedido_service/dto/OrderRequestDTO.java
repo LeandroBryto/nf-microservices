@@ -24,7 +24,7 @@ public class OrderRequestDTO {
     @Pattern(regexp = "\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}")
     private String clienteCpf;
 
-    @NotBlank(message = "Valor é obrigatório")
+    @NotNull(message = "Valor é obrigatório")
     @DecimalMin(value = "0.1",message = "Valor deve ser maior que zero")
     @Digits(integer = 8 , fraction = 2 , message = "Valor deve ter no máximo 8 dígitos inteiros e 2 decimaís")
     private BigDecimal valor;
