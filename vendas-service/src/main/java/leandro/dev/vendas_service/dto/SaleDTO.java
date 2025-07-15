@@ -14,7 +14,7 @@ import java.util.UUID;
 public class SaleDTO {
 
     private UUID id;
-    private UUID OrderId;
+    private UUID orderId;
     private String clienteNome;
     private String clienteEmail;
     private String clienteCpf;
