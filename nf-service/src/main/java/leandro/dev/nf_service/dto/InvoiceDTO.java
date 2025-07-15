@@ -22,6 +22,7 @@ public class InvoiceDTO {
     private String clienteEmail;
     private String clienteCpf;
     private BigDecimal valor;
+    private String descricao;
     private LocalDateTime dataEmissao;
     private String caminhoArquivoPdf;
     private String status;
