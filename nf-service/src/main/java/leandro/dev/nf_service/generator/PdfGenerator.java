@@ -99,6 +99,7 @@ public class PdfGenerator {
                 contentStream.setFont(font, fontSize);
                 contentStream.newLineAtOffset(margin, yPosition);
                 contentStream.showText("Email: " + venda.getClienteEmail());
+                contentStream.endText();
 
                 yPosition -= 40;
 
@@ -177,6 +178,7 @@ public class PdfGenerator {
                 contentStream.setFont(font , 10);
                 contentStream.newLineAtOffset(margin, yPosition);
                 contentStream.showText("ID do Pedido: " + venda.getOrderId());
+                contentStream.endText();
 
             }
             // converter para byte arry
