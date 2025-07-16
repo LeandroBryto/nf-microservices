@@ -28,7 +28,7 @@ public class InvoiceService {
     private final PdfGenerator pdfGenerator;
     private final RabbitTemplate rabbitTemplate;
 
-    @Value("app/pdfs")
+    @Value("${app.pdf.storage.path:/tmp/notas-fiscais}")
     private String pdfStoragePath;
 
     public void processarVenda(SaleDTO venda){
@@ -87,7 +87,7 @@ public class InvoiceService {
         notaFiscal.setSaleId(venda.getId());
         notaFiscal.setOrderId(venda.getOrderId());
         notaFiscal.setClienteNome(venda.getClienteNome());
-        notaFiscal.setClienteCpf(venda.getClienteEmail());
+        notaFiscal.setClienteEmail(venda.getClienteEmail());
         notaFiscal.setClienteCpf(venda.getClienteCpf());
         notaFiscal.setValor(venda.getValor());
         notaFiscal.setDescricao(venda.getDescricao());
