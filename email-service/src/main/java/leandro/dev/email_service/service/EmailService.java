@@ -49,7 +49,7 @@ public class EmailService {
         } catch (Exception e){
             // log erro
             String mensagemErro = String.format(
-                    "Erro ao enviar email para % - Nota Fiscal: %s - Erro: %s",
+                    "Erro ao enviar email para %s - Nota Fiscal: %s - Erro: %s",
                     notaFiscal.getClienteEmail(), notaFiscal.getNumeroNf(), e.getMessage()
             );
             enviarLog("email-service", "ERRO", mensagemErro);
@@ -66,11 +66,11 @@ public class EmailService {
 
         //configur destinatário e remetente
         helper.setTo(notaFiscal.getClienteEmail());
-        helper.setFrom("leandrobarreto.barreto@gmail.com");
+        helper.setFrom("leandro.brito@iesb.edu.br");
         helper.setSubject("Nota Fiscal Eletrônica - " + notaFiscal.getNumeroNf());
 
         // cria corpo do email
-
+//
         String corpoEmail = criarCorpoEmail(notaFiscal);
         helper.setText(corpoEmail, true);
 
